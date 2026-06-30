@@ -5,7 +5,9 @@
   "description": "Privacy-first, zero-cost open source tool to tailor your resume/cover letter to a job description, fully in the browser with an optional AI refinement step.",
   "license": "MIT",
   "scripts": {
+    "predev": "node scripts/copy-pdf-worker.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-pdf-worker.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

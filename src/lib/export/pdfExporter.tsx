@@ -3,8 +3,8 @@
  * @react-pdf/renderer's `pdf()` renderer. Runs entirely in the browser.
  */
 
-import { createElement } from "react";
-import { pdf } from "@react-pdf/renderer";
+import { createElement, type ReactElement } from "react";
+import { pdf, type DocumentProps } from "@react-pdf/renderer";
 import type { ResumeModel } from "../resume";
 import { getTemplate } from "@/templates/registry";
 
@@ -16,6 +16,7 @@ export async function generatePdfBlob(
   model: ResumeModel,
 ): Promise<Blob> {
   const { Component } = getTemplate(templateId);
-  const element = createElement(Component, { model });
+  // Templates render a <Document>, but TS sees the component's own props type.
+  const element = createElement(Component, { model }) as ReactElement<DocumentProps>;
   return pdf(element).toBlob();
 }

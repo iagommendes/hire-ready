@@ -9,13 +9,11 @@
 import * as pdfjs from "pdfjs-dist";
 import type { TextItem } from "pdfjs-dist/types/src/display/api";
 
-// Configure the worker. `new URL(..., import.meta.url)` lets the bundler emit a
-// local worker file, so no script is fetched from a third-party CDN.
+// Configure the worker. We serve a copy of the pdf.js worker as a static asset
+// from /public (see scripts/copy-pdf-worker.mjs, run on predev/prebuild) so the
+// browser loads it locally — no third-party CDN, no data leaving the device.
 if (typeof window !== "undefined") {
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
+  pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 }
 
 export interface ExtractedLine {

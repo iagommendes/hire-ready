@@ -32,3 +32,6 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# build artifact copied by scripts/copy-pdf-worker.mjs
+/public/pdf.worker.min.mjs
