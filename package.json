@@ -9,6 +9,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/copy-pdf-worker.mjs",
     "build": "next build",
+    "build:pages": "node scripts/copy-pdf-worker.mjs && node scripts/build-static.mjs",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

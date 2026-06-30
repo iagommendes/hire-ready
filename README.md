@@ -104,6 +104,7 @@ it is never shipped to the browser.
 | ------------------- | ------------------------------------ |
 | `npm run dev`       | Start the dev server                 |
 | `npm run build`     | Production build                     |
+| `npm run build:pages` | Static export to `out/` (GitHub Pages) |
 | `npm run start`     | Run the production build             |
 | `npm run lint`      | ESLint                               |
 | `npm run typecheck` | TypeScript (`tsc --noEmit`)          |
@@ -112,7 +113,31 @@ it is never shipped to the browser.
 > `predev`/`prebuild` automatically copy the pdf.js worker into `public/` so it
 > is served locally (no third-party CDN).
 
-## Deploying to Vercel
+## Deploying
+
+### Option A — GitHub Pages (simplest, free, no server)
+
+The whole app (PDF parsing, matching, PDF/TXT generation) runs in the browser,
+so it works great as a static site. A workflow is included that builds a static
+export and publishes it automatically.
+
+1. Push to `main` (or run the **Deploy to GitHub Pages** workflow manually).
+2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub
+   Actions**.
+3. Your site goes live at `https://<user>.github.io/<repo>/`.
+
+To preview the static export locally:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/hire-ready npm run build:pages
+npx serve out   # then open http://localhost:3000/hire-ready/
+```
+
+> **Note:** GitHub Pages can't run serverless functions, so the optional
+> "Refine with AI" button is unavailable there — the app detects the missing
+> endpoint and keeps working with the deterministic output. For AI, use Vercel.
+
+### Option B — Vercel (enables the AI module)
 
 1. Import the repository in Vercel (framework preset: **Next.js**).
 2. Add the `GEMINI_API_KEY` environment variable (optional) in Project Settings.
