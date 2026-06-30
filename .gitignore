@@ -35,3 +35,6 @@ next-env.d.ts
 
 # build artifact copied by scripts/copy-pdf-worker.mjs
 /public/pdf.worker.min.mjs
+
+# temporary folder used by scripts/build-static.mjs
+/.api-stashed
