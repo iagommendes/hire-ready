@@ -1,0 +1,7 @@
+{
+  "id": "classic",
+  "name": "Classic",
+  "description": "Single-column, serif-friendly layout that prints cleanly and is ATS-safe.",
+  "author": "hire-ready core",
+  "tags": ["minimal", "one-column", "ats-friendly"]
+}
